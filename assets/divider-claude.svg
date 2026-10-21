@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 48" width="1280" height="48" role="img" aria-labelledby="title">
-<title id="title">01</title>
-<path d="M0 24 H588" stroke="#3a3d44" stroke-width="1"/>
-<path d="M692 24 H1280" stroke="#3a3d44" stroke-width="1"/>
-<rect x="604" y="8" width="72" height="32" rx="6" fill="none" stroke="#e0b15a"/>
-<text x="640" y="29" fill="#e0b15a" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="14" font-weight="600" text-anchor="middle" letter-spacing="1.5">01</text>
-</svg>
