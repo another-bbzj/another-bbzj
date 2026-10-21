@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 520" width="1280" height="520" role="img" aria-labelledby="title">
+<title id="title">dsh-agent-team：同一块看板，接上 Harness 的火线。</title>
+<defs>
+  <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+    <path d="M28 0 H0 V28" fill="none" stroke="#f3f0e8" stroke-opacity="0.04" stroke-width="1"/>
+  </pattern>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#14161b"/>
+    <stop offset="1" stop-color="#0e0f12"/>
+  </linearGradient>
+</defs>
+<rect width="1280" height="520" rx="18" fill="url(#bg)"/>
+<rect width="1280" height="520" rx="18" fill="url(#grid)"/>
+<rect x="1" y="1" width="1278" height="518" rx="17" fill="none" stroke="#2c2e34"/>
+<rect x="0" y="18" width="3" height="484" fill="#5dbeba"/>
+<rect x="52" y="48" width="36" height="22" rx="4" fill="none" stroke="#5dbeba"/>
+<text x="70" y="64" fill="#5dbeba" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="600" text-anchor="middle" letter-spacing="1">02</text>
+<text x="98" y="64" fill="#9a958c" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="500" text-anchor="start" letter-spacing="1.4">DEEPSEEK HARNESS</text>
+<text x="52" y="118" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="36" font-weight="600" text-anchor="start">dsh-agent-team</text>
+<rect x="52" y="142" width="72" height="2" fill="#5dbeba"/>
+<text x="52" y="186" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="26" font-weight="500" text-anchor="start">同一块看板，</text>
+<text x="52" y="222" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="26" font-weight="500" text-anchor="start">接上 Harness 的火线。</text>
+<text x="52" y="264" fill="#9a958c" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="14" font-weight="400" text-anchor="start">One ESM bundle. dispatch_member.</text>
+<text x="52" y="286" fill="#9a958c" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="14" font-weight="400" text-anchor="start">session/event in-process, not transcripts.</text>
+<circle cx="59" cy="336" r="2.2" fill="#5dbeba"/>
+<text x="72" y="340" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="500" text-anchor="start" letter-spacing="0.6">安装</text>
+<text x="148" y="340" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="14" font-weight="500" text-anchor="start">dsh plugin add</text>
+<circle cx="59" cy="364" r="2.2" fill="#5dbeba"/>
+<text x="72" y="368" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="500" text-anchor="start" letter-spacing="0.6">派工</text>
+<text x="148" y="368" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="14" font-weight="500" text-anchor="start">dispatch_member</text>
+<circle cx="59" cy="392" r="2.2" fill="#5dbeba"/>
+<text x="72" y="396" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="500" text-anchor="start" letter-spacing="0.6">端口</text>
+<text x="148" y="396" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="14" font-weight="500" text-anchor="start">7790   ·   /agent-team/</text>
+<circle cx="59" cy="420" r="2.2" fill="#5dbeba"/>
+<text x="72" y="424" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="500" text-anchor="start" letter-spacing="0.6">版本</text>
+<text x="148" y="424" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="14" font-weight="500" text-anchor="start">0.2.0   ·   Node ≥ 20</text>
+<rect x="608" y="46" width="632" height="448" rx="14" fill="#08090b" opacity="0.65"/>
+<rect x="600" y="36" width="632" height="448" rx="14" fill="#121318" stroke="#2c2e34"/>
+<rect x="600" y="36" width="632" height="42" rx="14" fill="#181a20"/>
+<rect x="600" y="64" width="632" height="14" fill="#181a20"/>
+<path d="M600 78 H1232" stroke="#2c2e34"/>
+<circle cx="622" cy="57" r="4.5" fill="#3a3d44"/>
+<circle cx="638" cy="57" r="4.5" fill="#3a3d44"/>
+<circle cx="654" cy="57" r="4.5" fill="#5dbeba" fill-opacity="0.85"/>
+<text x="674" y="62" fill="#f3f0e8" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="500" text-anchor="start">dsh web</text>
+<text x="1212" y="62" fill="#6e6a63" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="12" font-weight="500" text-anchor="end">启动输出</text>
+<rect x="624" y="94" width="584" height="132" rx="8" fill="#0c0d10" stroke="#2c2e34"/>
+<text x="640" y="122" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="450" text-anchor="start">$ dsh plugin --profile web add dsh-agent-team</text>
+<text x="640" y="148" fill="#5dbeba" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="450" text-anchor="start">[dsh-agent-team] v0.2.0 已加载：工具 dispatch_member，8 位成员</text>
+<text x="640" y="174" fill="#f3f0e8" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="450" text-anchor="start">[dsh-agent-team] 独立看板  127.0.0.1:7790/agent-team/</text>
+<text x="640" y="200" fill="#9a958c" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="450" text-anchor="start">[dsh-agent-team] 看板  127.0.0.1:3080/agent-team/</text>
+<text x="628" y="258" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="11" font-weight="600" text-anchor="start" letter-spacing="1.2">SESSION / EVENT</text>
+<rect x="628" y="276" width="136" height="56" rx="8" fill="#181a20" stroke="#2c2e34"/>
+<rect x="628" y="276" width="136" height="3" fill="#5dbeba" fill-opacity="0.35"/>
+<text x="640" y="302" fill="#f3f0e8" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="600" text-anchor="start">session/event</text>
+<text x="640" y="320" fill="#9a958c" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" text-anchor="start">火线</text>
+<path d="M764 304 H780" stroke="#5dbeba" stroke-opacity="0.7" stroke-width="1.2"/>
+<rect x="780" y="276" width="136" height="56" rx="8" fill="#181a20" stroke="#2c2e34"/>
+<rect x="780" y="276" width="136" height="3" fill="#5dbeba" fill-opacity="0.55"/>
+<text x="792" y="302" fill="#f3f0e8" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="600" text-anchor="start">store</text>
+<text x="792" y="320" fill="#9a958c" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" text-anchor="start">进程内</text>
+<path d="M916 304 H932" stroke="#5dbeba" stroke-opacity="0.7" stroke-width="1.2"/>
+<rect x="932" y="276" width="136" height="56" rx="8" fill="#181a20" stroke="#2c2e34"/>
+<rect x="932" y="276" width="136" height="3" fill="#5dbeba" fill-opacity="0.75"/>
+<text x="944" y="302" fill="#f3f0e8" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="600" text-anchor="start">snapshot.json</text>
+<text x="944" y="320" fill="#9a958c" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" text-anchor="start">部门 · 成本</text>
+<path d="M1068 304 H1084" stroke="#5dbeba" stroke-opacity="0.7" stroke-width="1.2"/>
+<rect x="1084" y="276" width="136" height="56" rx="8" fill="#181a20" stroke="#2c2e34"/>
+<rect x="1084" y="276" width="136" height="3" fill="#5dbeba" fill-opacity="0.9500000000000001"/>
+<text x="1096" y="302" fill="#f3f0e8" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="600" text-anchor="start">1.5s</text>
+<text x="1096" y="320" fill="#9a958c" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="11" font-weight="400" text-anchor="start">页面轮询</text>
+<rect x="624" y="358" width="584" height="102" rx="10" fill="#181a20" stroke="#2c2e34"/>
+<text x="644" y="384" fill="#5dbeba" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="600" text-anchor="start">dispatch_member</text>
+<text x="800" y="384" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="400" text-anchor="start">成员文件  ~/.dsh/agent-team/members/*.md</text>
+<text x="644" y="412" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="11" font-weight="500" text-anchor="start" letter-spacing="0.6">member</text>
+<text x="644" y="436" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" text-anchor="start">backend-dev</text>
+<text x="756" y="412" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="11" font-weight="500" text-anchor="start" letter-spacing="0.6">dept</text>
+<text x="756" y="436" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" text-anchor="start">研发部</text>
+<text x="868" y="412" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="11" font-weight="500" text-anchor="start" letter-spacing="0.6">name</text>
+<text x="868" y="436" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" text-anchor="start">阿服</text>
+<text x="980" y="412" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="11" font-weight="500" text-anchor="start" letter-spacing="0.6">effort</text>
+<text x="980" y="436" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" text-anchor="start">跟随路由</text>
+<text x="1092" y="412" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="11" font-weight="500" text-anchor="start" letter-spacing="0.6">cost</text>
+<text x="1092" y="436" fill="#5dbeba" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" text-anchor="start">未定价</text>
+</svg>
