@@ -1,27 +1,21 @@
-<a href="https://github.com/another-bbzj"><img src="assets/header.svg" width="100%" alt="邹俊 Zou Jun · 嵌入式 × AI Agent · 东北大学秦皇岛分校"></a>
+<a href="https://github.com/another-bbzj"><picture><source media="(prefers-color-scheme: light)" srcset="assets/header-light.svg"><img src="assets/header.svg" width="830" alt="邹俊 ZOU JUN · 嵌入式 × AI Agent · 东北大学秦皇岛分校"></picture></a>
 
-<p align="center">
-<a href="https://github.com/another-bbzj?tab=followers"><img src="https://img.shields.io/github/followers/another-bbzj?style=for-the-badge&logo=github&label=followers&color=ff8a3d&labelColor=0d1117" alt="followers"></a>
-<a href="https://github.com/another-bbzj/claude-agent-team"><img src="https://img.shields.io/github/stars/another-bbzj/claude-agent-team?style=for-the-badge&logo=github&label=claude-agent-team&color=9f8bff&labelColor=0d1117" alt="claude-agent-team stars"></a>
-<a href="https://github.com/another-bbzj/dsh-agent-team"><img src="https://img.shields.io/github/stars/another-bbzj/dsh-agent-team?style=for-the-badge&logo=github&label=dsh-agent-team&color=2ee6c8&labelColor=0d1117" alt="dsh-agent-team stars"></a>
-</p>
+把固件写到每一拍都准，把 Agent 的协作做到每一步都看得见。<br>
+Firmware that keeps time. Agents you can actually watch.
 
-<p align="center"><img src="assets/intro.webp" width="100%" alt="20 秒介绍：邹俊的三个代表作"></p>
+<samp><a href="https://github.com/another-bbzj?tab=repositories">repositories</a> . <a href="https://github.com/another-bbzj/claude-agent-team">claude-agent-team</a> . <a href="https://github.com/another-bbzj/dsh-agent-team">dsh-agent-team</a> . <a href="https://github.com/another-bbzj/dart">dart</a> . <a href="https://github.com/another-bbzj?tab=stars">stars</a></samp>
 
-<table>
-<tr>
-<td width="50%"><a href="https://github.com/another-bbzj/claude-agent-team"><img src="assets/card-cat.svg" width="100%" alt="claude-agent-team"></a></td>
-<td width="50%"><a href="https://github.com/another-bbzj/dsh-agent-team"><img src="assets/card-dsh.svg" width="100%" alt="dsh-agent-team"></a></td>
-</tr>
-<tr><td colspan="2"><a href="https://github.com/another-bbzj/dart"><img src="assets/card-dart.svg" width="100%" alt="dart：RoboMaster 飞镖固件"></a></td></tr>
-</table>
+<a href="https://github.com/another-bbzj?tab=followers"><img src="https://img.shields.io/github/followers/another-bbzj?labelColor=1a1816&color=d9774b&style=flat-square&logoColor=ece6dc&logo=github&label=followers" alt="followers"></a>
+<a href="https://github.com/another-bbzj/claude-agent-team"><img src="https://img.shields.io/github/stars/another-bbzj/claude-agent-team?labelColor=1a1816&color=d9774b&style=flat-square&logoColor=ece6dc&logo=github&label=claude-agent-team" alt="claude-agent-team stars"></a>
 
-<details>
-<summary><b>正在做 · Now</b></summary>
+<a href="https://github.com/another-bbzj/claude-agent-team"><picture><source media="(prefers-color-scheme: light)" srcset="assets/card-cat-light.svg"><img src="assets/card-cat.svg" width="830" alt="claude-agent-team：Claude Code 部门制 Agent 团队 + 本机实时看板"></picture></a>
 
-- **claude-agent-team**：对接 Claude Code 官方 Agent Teams，做「看得见、算得清、验得了」的本地指挥室：hooks 事件流、预算护栏、工单与 diff / 测试绑定的验收面板。
-- **dart**：征龙凌沧 26 赛季飞镖发射 / 换弹固件迭代中。
+<a href="https://github.com/another-bbzj/dsh-agent-team"><picture><source media="(prefers-color-scheme: light)" srcset="assets/card-dsh-light.svg"><img src="assets/card-dsh.svg" width="410" alt="dsh-agent-team：DeepSeek Harness 插件"></picture></a>
+<a href="https://github.com/another-bbzj/dart"><picture><source media="(prefers-color-scheme: light)" srcset="assets/card-dart-light.svg"><img src="assets/card-dart.svg" width="410" alt="dart：RoboMaster 飞镖发射 / 换弹固件（STM32H723）"></picture></a>
 
-</details>
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/another-bbzj/another-bbzj/output/snake-light.svg">
+  <img src="https://raw.githubusercontent.com/another-bbzj/another-bbzj/output/snake-dark.svg" width="830" alt="贡献图贪吃蛇">
+</picture>
 
-<a href="https://github.com/another-bbzj"><img src="assets/footer.svg" width="100%" alt="欢迎 Star、Issue 与 PR"></a>
+<a href="https://github.com/another-bbzj"><picture><source media="(prefers-color-scheme: light)" srcset="assets/footer-light.svg"><img src="assets/footer.svg" width="830" alt="欢迎 Star、Issue 与 PR"></picture></a>
