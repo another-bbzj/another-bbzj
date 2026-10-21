@@ -1,135 +1,139 @@
-import base64, io, os
-from fontTools.ttLib import TTFont
-from fontTools.varLib import instancer
-from fontTools import subset
-G="/usr/share/fonts/truetype/sand-box/google/"
-FONTS={
- "D":(G+"Space Grotesk/SpaceGrotesk-VariableFont_wght.ttf",None,700),
- "I":(G+"Inter/Inter-VariableFont_opsz,wght.ttf",None,500),
- "IB":(G+"Inter/Inter-VariableFont_opsz,wght.ttf",None,700),
- "M":(G+"JetBrains Mono/JetBrainsMono-VariableFont_wght.ttf",None,500),
- "C":("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",2,None),
- "CB":("/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",2,None),
-}
-_cache={}
-def load(k):
-    p,idx,w=FONTS[k]
-    f=TTFont(p,fontNumber=idx) if idx is not None else TTFont(p)
-    if 'fvar' in f:
-        axes={a.axisTag:a.defaultValue for a in f['fvar'].axes}
-        axes['wght']=w
-        if 'opsz' in axes: axes['opsz']=24
-        f=instancer.instantiateVariableFont(f,axes)
-    return f
-def face(k,text):
-    f=load(k)
-    o=subset.Options(); o.flavor='woff2'; o.layout_features=['kern','liga']; o.name_IDs=[]; o.notdef_outline=True
-    s=subset.Subsetter(o); s.populate(text=text+" "); s.subset(f)
-    b=io.BytesIO(); f.flavor='woff2'; f.save(b)
-    return "@font-face{font-family:'%s';src:url(data:font/woff2;base64,%s) format('woff2');}"%(
-        "f"+k,base64.b64encode(b.getvalue()).decode())
-import re
-def build(name,w,h,body):
-    # collect text per font class: elements use class="d|i|ib|m|c|cb"; latin+cjk mix => font stack
-    texts=re.findall(r'>([^<>]+)<',body)
-    alltext="".join(texts)
-    css="".join(face(k,alltext) for k in FONTS)
-    css+="""text{font-family:'fI','fC',sans-serif;fill:#c9d1e0}
-.d{font-family:'fD','fCB';font-weight:700}.ib{font-family:'fIB','fCB'}.m{font-family:'fM','fC';}
-.c{font-family:'fI','fC'}.cb{font-family:'fIB','fCB'}"""
-    # ensure needed fonts embedded: mark usage
-    svg=f'''<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}">
-<style>{css}</style>
-<defs>
-<pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#ffffff" stroke-opacity=".045"/></pattern>
-<linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset=".5" stop-color="#7c5cff" stop-opacity=".5"/><stop offset="1" stop-color="#2ee6c8"/></linearGradient>
-<linearGradient id="txt" x1="0" x2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#ffd3b0"/><stop offset="1" stop-color="#ff8a3d"/></linearGradient>
-<linearGradient id="txt2" x1="0" x2="1"><stop offset="0" stop-color="#9f8bff"/><stop offset="1" stop-color="#2ee6c8"/></linearGradient>
-<radialGradient id="g1"><stop offset="0" stop-color="#ff7a2f" stop-opacity=".35"/><stop offset="1" stop-color="#ff7a2f" stop-opacity="0"/></radialGradient>
-<radialGradient id="g2"><stop offset="0" stop-color="#6d4cff" stop-opacity=".35"/><stop offset="1" stop-color="#6d4cff" stop-opacity="0"/></radialGradient>
-<radialGradient id="g3"><stop offset="0" stop-color="#18d6b5" stop-opacity=".25"/><stop offset="1" stop-color="#18d6b5" stop-opacity="0"/></radialGradient>
-<clipPath id="clip"><rect x="1" y="1" width="{w-2}" height="{h-2}" rx="18"/></clipPath>
-</defs>
-<g clip-path="url(#clip)">
-<rect width="{w}" height="{h}" fill="#090b11"/>
-<rect width="{w}" height="{h}" fill="url(#grid)"/>
-{body}
-</g>
-<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="18" fill="none" stroke="url(#edge)" stroke-opacity=".75" stroke-width="1.5"/>
-</svg>'''
-    # make sure 'fD','fM','fIB','fCB' are included when classes used
-    open(f"assets/{name}.svg","w").write(svg)
-    print(name, os.path.getsize(f"assets/{name}.svg")//1024,"KB")
+"""Cinematic SVG profile with the owner's exact original lettering.
 
-def chips(x,y,items,mono=True,h=26,gap=8,size=13):
-    out=[];cx=x
-    for t,col in items:
-        wdt=int(len(t.encode('utf-8'))*0+sum(14 if ord(c)>255 else 8.2 for c in t)*size/13)+22
-        out.append(f'<rect x="{cx}" y="{y}" width="{wdt}" height="{h}" rx="7" fill="{col}" fill-opacity=".12" stroke="{col}" stroke-opacity=".45"/>'
-                   f'<text x="{cx+wdt/2}" y="{y+h/2+4.5}" text-anchor="middle" class="m" font-size="{size}" style="fill:{col}">{t}</text>')
-        cx+=wdt+gap
-    return "".join(out)
+Run: python gen.py (requires fonttools and brotli).
+No scripts or external resources are required by the generated SVG images.
+"""
+from pathlib import Path
+import base64, math, random, re
+import typekit
+from typekit import text, line, rect, circle, SIGNATURE, ROOT, ASSETS
 
-OR,VI,TE,BL="#ff8a3d","#9f8bff","#2ee6c8","#6aa8ff"
-# ---------- header ----------
-term=[("$ whoami","#7d8799"),("邹俊 · Zou Jun  @another-bbzj","#e6ebf5"),("$ cat focus.txt","#7d8799"),
-      ("embedded  → STM32 · 电机控制 · 状态机",OR),("ai-agent  → Claude Code 多智能体团队",VI),
-      ("tooling   → 看得见、算得清、验得了",TE),("$ ","#7d8799")]
-tl="".join(f'<text x="790" y="{122+i*26}" class="m" font-size="14" style="fill:{c}">{t}</text>' for i,(t,c) in enumerate(term))
-header=f'''
-<circle cx="180" cy="40" r="300" fill="url(#g1)"><animate attributeName="r" values="280;330;280" dur="8s" repeatCount="indefinite"/></circle>
-<circle cx="1050" cy="330" r="320" fill="url(#g2)"><animate attributeName="r" values="330;280;330" dur="9s" repeatCount="indefinite"/></circle>
-<circle cx="640" cy="380" r="220" fill="url(#g3)"/>
-<rect x="0" y="0" width="1200" height="2" fill="{OR}" opacity=".5"><animate attributeName="y" values="0;380;0" dur="10s" repeatCount="indefinite"/></rect>
-<text x="56" y="64" class="m" font-size="13" letter-spacing="3" style="fill:{OR}">EMBEDDED × AI AGENT · NEUQ</text>
-<text x="56" y="150" class="d" font-size="78" fill="url(#txt)" style="fill:url(#txt)">邹俊</text>
-<text x="246" y="150" class="d" font-size="44" style="fill:#e6ebf5">Zou Jun</text>
-<text x="56" y="198" class="cb" font-size="24" style="fill:#e6ebf5">在 MCU 上写确定性，在 Agent 里找协作。</text>
-<text x="56" y="232" class="c" font-size="15" style="fill:#9aa4b8">东北大学秦皇岛分校 · RoboMaster / 智能车嵌入式 · Claude Code 多智能体工具作者</text>
-{chips(56,262,[("C / C++",BL),("STM32H7",OR),("HAL · CubeMX",OR),("Python",VI),("Node.js",TE),("Claude Code",OR)])}
-<text x="56" y="336" class="m" font-size="12" style="fill:#5d6678">// firmware that never misses a beat · agents you can actually watch</text>
-<rect x="760" y="56" width="400" height="268" rx="14" fill="#0e1119" fill-opacity=".85" stroke="#ffffff" stroke-opacity=".08"/>
-<circle cx="782" cy="78" r="5" fill="#ff5f57"/><circle cx="800" cy="78" r="5" fill="#febc2e"/><circle cx="818" cy="78" r="5" fill="#28c840"/>
-<text x="1140" y="82" text-anchor="end" class="m" font-size="11" style="fill:#5d6678">zsh — 80×24</text>
-<line x1="760" y1="96" x2="1160" y2="96" stroke="#fff" stroke-opacity=".06"/>
-{tl}
-<rect x="808" y="268" width="9" height="17" fill="{OR}"><animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/></rect>
+P={}
+CSS='''
+@keyframes breathe{0%,100%{opacity:.45;transform:translate(-40px,12px) scale(.94)}50%{opacity:.9;transform:translate(36px,-14px) scale(1.05)}}
+@keyframes silk{0%,100%{transform:translate(0,0) rotate(-4deg)}50%{transform:translate(-18px,18px) rotate(5deg)}}
+@keyframes glint{0%,12%{transform:translateX(-1100px)}65%,100%{transform:translateX(1100px)}}
+@keyframes drift{0%,100%{transform:translateY(0);opacity:.3}50%{transform:translateY(-15px);opacity:.75}}
+@keyframes orbit{to{stroke-dashoffset:-500}}
+@keyframes frame{to{transform:translateX(-1152px)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes pan{0%,100%{transform:translateY(0)}50%{transform:translateY(-112px)}}
+@keyframes flight{0%,10%{offset-distance:0%;opacity:0}14%{opacity:1}74%{offset-distance:100%;opacity:1}78%,100%{offset-distance:100%;opacity:0}}
+@keyframes trace{0%{stroke-dashoffset:560}80%,100%{stroke-dashoffset:0}}
+@keyframes ring{0%,62%{transform:scale(.7);opacity:0}70%{opacity:.7}100%{transform:scale(1.4);opacity:0}}
+@keyframes reel{0%,20%{transform:translateY(0)}30%,50%{transform:translateY(-88px)}60%,80%{transform:translateY(-176px)}90%,100%{transform:translateY(-264px)}}
+.reel{animation:reel 12s cubic-bezier(.65,0,.35,1) infinite}
+.breathe{transform-origin:750px 130px;animation:breathe 10s ease-in-out infinite}.silk{transform-origin:780px 170px;animation:silk 12s ease-in-out infinite}
+.glint{animation:glint 9s cubic-bezier(.3,0,.6,1) infinite}.dust{animation:drift 6s ease-in-out infinite}.flow{stroke-dasharray:2 15;animation:orbit 18s linear infinite}
+.frames{animation:frame 1.2s steps(6) infinite}.float{animation:float 4s ease-in-out infinite}.pan{animation:pan 15s ease-in-out infinite}
+.flight{offset-path:path('M540 260 Q710 20 938 122');offset-rotate:auto;animation:flight 6s cubic-bezier(.22,.7,.4,1) infinite}
+.trace{stroke-dasharray:560;animation:trace 6s ease-out infinite}.ring{transform-box:fill-box;transform-origin:center;animation:ring 6s ease-out infinite}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.glint,.flight,.ring{display:none}.trace{stroke-dashoffset:0}}
 '''
-build("header",1200,380,header)
 
-# ---------- cards ----------
-def card(name,w,h,idx,title,sub,lines,tags,accent,glow):
-    ls="".join(f'<circle cx="38" cy="{h-172+i*28-4}" r="3" fill="{accent}"/><text x="52" y="{h-172+i*28}" class="c" font-size="14.5" style="fill:#c9d1e0">{t}</text>' for i,t in enumerate(lines))
-    body=f'''<circle cx="{w-40}" cy="20" r="260" fill="url(#{glow})"><animate attributeName="opacity" values=".7;1;.7" dur="6s" repeatCount="indefinite"/></circle>
-<text x="30" y="46" class="m" font-size="12" letter-spacing="2" style="fill:{accent}">{idx}</text>
-<text x="30" y="88" class="d" font-size="32" style="fill:#f2f5fa">{title}</text>
-<text x="30" y="116" class="c" font-size="14" style="fill:#9aa4b8">{sub}</text>
-<line x1="30" y1="134" x2="{w-30}" y2="134" stroke="#fff" stroke-opacity=".07"/>
-{ls}
-{chips(30,h-50,tags,size=12,h=24)}
-<text x="{w-30}" y="46" text-anchor="end" class="m" font-size="12" style="fill:#5d6678">open ↗</text>'''
-    build(name,w,h,body)
-card("card-cat",590,330,"01 · FLAGSHIP · PYTHON","claude-agent-team","Claude Code 部门制 Agent 团队 + 本机实时看板",
- ["常驻分部门 Agent，办公协议写进项目","子代理派工 / 回报 / 交接实时可视化","运行时零依赖：仅 Python 3.8+ 标准库","看板只绑定 127.0.0.1，不调用模型 API"],
- [("v1.4.2",OR),("zero-deps",TE),("Win·macOS·Linux",BL),("MIT",VI)],OR,"g1")
-card("card-dsh",590,330,"02 · PLUGIN · JAVASCRIPT","dsh-agent-team","DeepSeek Harness 插件 · 可视化指挥室看板",
- ["8 位常驻成员 · 6 个部门，按岗位派工","每个子代理一只动画桌宠（自带 13 只）","token / 成本取真实 usage，未知模型不瞎算","纯 ESM，无需构建，一个 npm 包即一个 bundle"],
- [("Node ≥20",TE),("npm",OR),("ESM",BL),("MIT",VI)],VI,"g2")
-dart=f'''<circle cx="1100" cy="40" r="300" fill="url(#g3)"/>
-<text x="30" y="46" class="m" font-size="12" letter-spacing="2" style="fill:{TE}">03 · FIRMWARE · C</text>
-<text x="30" y="92" class="d" font-size="34" style="fill:#f2f5fa">dart</text>
-<text x="130" y="92" class="cb" font-size="20" style="fill:#e6ebf5">征龙凌沧 26 赛季 · RoboMaster 飞镖发射 / 换弹固件</text>
-<text x="30" y="124" class="c" font-size="14.5" style="fill:#9aa4b8">STM32H723 上的发射、换弹流程状态机与电机控制。</text>
-{chips(30,150,[("STM32H723",TE),("state-machine",OR),("motor-control",VI),("RoboMaster",BL)],size=12,h=24)}
-<g transform="translate(760,40)" fill="none" stroke-linecap="round">
- <path d="M0 110 Q 180 -40 380 60" stroke="{TE}" stroke-opacity=".25" stroke-dasharray="4 6"/>
- <path id="arc" d="M0 110 Q 180 -40 380 60" stroke="url(#edge)" stroke-width="2" stroke-dasharray="60 900"><animate attributeName="stroke-dashoffset" values="0;-480" dur="3.2s" repeatCount="indefinite"/></path>
- <circle cx="380" cy="60" r="10" stroke="{OR}"/><circle cx="380" cy="60" r="4" fill="{OR}"/>
- <circle cx="380" cy="60" r="10" stroke="{OR}"><animate attributeName="r" values="10;26" dur="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="1.6s" repeatCount="indefinite"/></circle>
-</g>'''
-build("card-dart",1200,200,dart)
-# ---------- footer ----------
-foot=f'''<circle cx="600" cy="140" r="380" fill="url(#g2)"/>
-<text x="600" y="60" text-anchor="middle" class="cb" font-size="22" style="fill:#e6ebf5">如果这些项目对你有用，点个 Star 就是最好的反馈</text>
-<text x="600" y="92" text-anchor="middle" class="m" font-size="13" style="fill:#7d8799">issues &amp; PRs welcome · github.com/another-bbzj</text>'''
-build("footer",1200,130,foot)
+def document(name,w,h,content,accent,title,light=False):
+    # Static fine grain and slowly moving illumination are separate layers.
+    defs=f'''<defs>
+<radialGradient id="bloom"><stop stop-color="{accent}" stop-opacity=".38"/><stop offset="1" stop-color="{accent}" stop-opacity="0"/></radialGradient>
+<linearGradient id="metal" x1="0" y1="1" x2="1" y2="0"><stop stop-color="{P['metal0']}"/><stop offset=".28" stop-color="{P['metal1']}"/><stop offset=".46" stop-color="{P['metal2']}"/><stop offset=".56" stop-color="{P['metal0']}"/><stop offset=".76" stop-color="{P['metal1']}"/><stop offset=".88" stop-color="{P['metal2']}"/><stop offset="1" stop-color="{P['metal0']}"/></linearGradient>
+<linearGradient id="shine"><stop stop-color="{P['ink']}" stop-opacity="0"/><stop offset=".5" stop-color="{P['ink']}" stop-opacity=".65"/><stop offset="1" stop-color="{P['ink']}" stop-opacity="0"/></linearGradient>
+<linearGradient id="fade"><stop stop-color="{P['bg']}"/><stop offset=".57" stop-color="{P['bg']}" stop-opacity="0"/></linearGradient>
+<linearGradient id="vertical" x2="0" y2="1"><stop stop-color="{P['bg']}"/><stop offset=".2" stop-color="{P['bg']}" stop-opacity="0"/><stop offset=".78" stop-color="{P['bg']}" stop-opacity="0"/><stop offset="1" stop-color="{P['bg']}"/></linearGradient>
+<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".78" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+<filter id="blur"><feGaussianBlur stdDeviation="14"/></filter>
+<clipPath id="canvas"><rect x="1" y="1" width="{w-2}" height="{h-2}" rx="16"/></clipPath>
+</defs>'''
+    out=f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-labelledby="title"><title id="title">{title}</title><style>{CSS}</style>{defs}'
+    out+=f'<g clip-path="url(#canvas)"><path fill="{P["bg"]}" d="M0 0H{w}V{h}H0Z"/>'
+    out+=f'<ellipse class="breathe" cx="800" cy="140" rx="390" ry="260" fill="url(#bloom)"/>'
+    out+=content
+    out+=f'<rect width="{w}" height="{h}" filter="url(#grain)" opacity="{.035 if not light else .045}" style="mix-blend-mode:{"screen" if not light else "multiply"}" pointer-events="none"/>'
+    out+=f'</g><rect x=".75" y=".75" width="{w-1.5}" height="{h-1.5}" rx="16" fill="none" stroke="{P["edge"]}" stroke-width="1.5"/></svg>'
+    (ASSETS/(name+'.svg')).write_text(out,encoding='utf-8')
+
+def dust(w,h):
+    rng=random.Random(58)
+    return ''.join(f'<circle class="dust" cx="{rng.uniform(20,w-20):.2f}" cy="{rng.uniform(15,h-15):.2f}" r="{rng.uniform(.4,1.3):.2f}" fill="{P["metal1"]}" opacity=".4" style="animation-delay:-{rng.uniform(0,6):.1f}s"/>' for _ in range(65))
+
+def ribbons():
+    result='<g class="silk" fill="none" stroke="url(#metal)">'
+    # Tightly layered curves form a continuous folded metallic ribbon.
+    for i in range(64):
+        t=i/63
+        result+=f'<path d="M{565+t*88:.1f} 370 C{980-t*170:.1f} {270-t*155:.1f} {570+t*295:.1f} {45+t*165:.1f} {1030+t*75:.1f} {-70+t*65:.1f}" stroke-width="1.5" opacity="{.3+.7*math.sin(t*math.pi):.3f}"/>'
+    result+='</g>'
+    result+='<g class="silk" style="animation-delay:-6s" fill="none" stroke="url(#metal)" opacity=".3">'
+    for i in range(24):
+        result+=f'<path d="M{670+i*3} 390 C{500+i*4} 120 {1120-i*3} 220 {990+i*5} -50" stroke-width=".7"/>'
+    return result+'</g>'
+
+def hero(light,mobile=False):
+    w,h=(600,370) if mobile else (1000,350)
+    sig='<g transform="translate(38 72) scale(1.85) translate(-28 -74)">'+SIGNATURE.replace('#ece6dc',P['ink'])+'</g>'
+    s=ribbons() if not mobile else '<g opacity=".4" transform="translate(-420 0)">'+ribbons()+'</g>'
+    s+=dust(w,h)
+    if not mobile:s+='<rect width="720" height="350" fill="url(#fade)"/>'
+    s+=line(34,28,w-34,28,P['edge'])
+    s+=text('EMBEDDED × AI AGENT',36,54,13,P['accent'],face='mono',spacing=2)
+    if not mobile:s+=text('ZOU JUN',282,159,23,P['muted'],face='tight',spacing=4)
+    else:s+=text('ZOU JUN',282,159,23,P['muted'],face='tight',spacing=4)
+    s+=sig
+    s+='<mask id="name">'+sig.replace(P['ink'],'#ffffff')+'</mask><g mask="url(#name)"><rect class="glint" x="0" y="65" width="230" height="170" fill="url(#shine)" transform="skewX(-22)"/></g>'
+    s+=text('在 MCU 上写确定性，在 Agent 里找协作。',38,260,23 if not mobile else 21)
+    s+=text('RoboMaster / 智能车嵌入式开发',38,294,17,P['muted'])
+    s+=text('东北大学秦皇岛分校',38,321,15,P['muted'])
+    if not mobile:s+=text('FIRMWARE / AGENTS / OPEN SOURCE',645,322,12,P['accent'],face='mono')
+    document('header'+('-mobile' if mobile else '')+('-light' if light else ''),w,h,s,P['accent'],'邹俊 · 在 MCU 上写确定性，在 Agent 里找协作。',light)
+
+def trajectory():
+    s=''
+    for r in [26,52,78]:
+        s+=f'<ellipse cx="938" cy="122" rx="{r*.42}" ry="{r}" fill="none" stroke="{P["accent"]}" stroke-opacity=".3"/>'
+    s+=f'<path d="M540 260Q710 20 938 122" fill="none" stroke="{P["accent"]}" stroke-opacity=".15"/>'
+    s+=f'<path class="trace" d="M540 260Q710 20 938 122" fill="none" stroke="url(#metal)" stroke-width="2"/>'
+    s+=f'<g class="flight"><path d="M-26 -3L12 0L-26 3L-19 0Z" fill="{P["metal2"]}"/><path d="M-27 -8L-15 0L-27 8L-23 0Z" fill="{P["accent"]}"/></g>'
+    s+=f'<ellipse class="ring" cx="938" cy="122" rx="35" ry="80" fill="none" stroke="{P["metal2"]}"/>'
+    for i in range(6):s+=line(560+i*60,282,560+i*60,288,P['edge'])
+    s+=text('STM32H723 / MOTOR CONTROL',604,309,11,P['muted'],face='mono')
+    return s
+
+def card(kind,light,cover=False):
+    title,sub,stack,accent={
+        'cat':('claude-agent-team','派工、回报、交接，实时可见。','PYTHON / ZERO DEPS / LOCAL',P['accent']),
+        'dsh':('dsh-agent-team','DeepSeek Harness 插件','JAVASCRIPT / ESM / NPM',P['blue']),
+        'dart':('dart','RoboMaster 飞镖发射 / 换弹固件','C / C++ / STM32H723',P['accent'])}[kind]
+    idx={'cat':'01','dsh':'02','dart':'03'}[kind]
+    s=dust(1000,330)
+    if kind in ['cat','dsh']:
+        s+='<g opacity=".35" transform="translate(0 -20)">'+ribbons()+'</g>'
+        words=['Plan.','Build.','Ship.','Plan.'] if kind=='cat' else ['Dispatch.','Observe.','Deliver.','Dispatch.']
+        s+='<clipPath id="reel-window"><rect x="573" y="73" width="390" height="130"/></clipPath><g clip-path="url(#reel-window)"><g class="reel">'
+        for i,word in enumerate(words):s+=text(word,587,164+i*88,67,P['ink'],face='serif')
+        s+='</g></g>'
+        s+=line(587,220,936,220,P['edge'])
+        s+=text('A TEAM / IN MOTION' if kind=='cat' else 'ONE PLUGIN. ALL CONNECTED.',587,250,12,accent,face='mono')
+    else:s+=trajectory()
+    kicker=(('CLAUDE CODE / AGENT TEAM' if kind=='cat' else 'DEEPSEEK HARNESS / AGENT TEAM') if cover else idx+' / '+{'cat':'AGENT TEAM','dsh':'HARNESS PLUGIN','dart':'EMBEDDED SYSTEMS'}[kind])
+    s+=text(kicker,36,48,12,accent,face='mono',spacing=1.5)
+    s+=text(title,36,124,46 if kind!='dart' else 68,P['ink'],face='serif')
+    s+=text(sub,38,175,21)
+    if kind=='dsh':s+=text('可视化指挥室',38,208,20,P['muted'])
+    s+=line(38,253,460,253,P['edge'])
+    s+=text(stack,38,286,12,P['muted'],face='mono')
+    document(('readme-' if cover else 'card-')+kind+('-light' if light else ''),1000,330,s,accent,title+' · '+sub,light)
+
+def footer(light):
+    s='<g opacity=".23" transform="translate(0 -80)">'+ribbons()+'</g>'
+    s+=text('Thanks for reading.',36,56,33,face='serif')
+    s+=text('欢迎 Star、Issue 与 PR',38,91,16,P['muted'])
+    s+=text('GITHUB.COM/ANOTHER-BBZJ',680,78,12,P['muted'],face='mono')
+    document('footer'+('-light' if light else ''),1000,125,s,P['accent'],'Thanks for reading. 欢迎 Star、Issue 与 PR',light)
+
+for light in [False,True]:
+    P=dict(bg='#f5f0e5',ink='#302b23',muted='#746857',edge='#d9cfbe',accent='#a46c32',blue='#536a7b',metal0='#a47b4b',metal1='#c3a46e',metal2='#fff8df') if light else dict(bg='#13120f',ink='#f2e9da',muted='#b7aa96',edge='#3b3226',accent='#d5aa69',blue='#9db7c9',metal0='#49321b',metal1='#c29454',metal2='#ffe6b0')
+    typekit.P=P
+    for mobile in [False,True]:hero(light,mobile)
+    for kind in ['cat','dsh','dart']:card(kind,light)
+    for kind in ['cat','dsh']:card(kind,light,True)
+    footer(light)
+print('Generated cinematic assets with original typography and reduced-motion support.')
