@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 228" width="1280" height="228" role="img" aria-labelledby="title">
+<title id="title">邹俊 · 嵌入式 × AI Agent。东北大学秦皇岛分校。</title>
+<defs>
+  <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+    <path d="M32 0 H0 V32" fill="none" stroke="#f3f0e8" stroke-opacity="0.045" stroke-width="1"/>
+  </pattern>
+</defs>
+<style>
+.cur{animation:cur 1.15s steps(1) infinite}
+@keyframes cur{0%,49%{opacity:1}50%,100%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.cur{animation:none}}
+</style>
+<rect width="1280" height="228" rx="16" fill="#0e0f12"/>
+<rect width="1280" height="228" rx="16" fill="url(#grid)"/>
+<rect x="1" y="1" width="1278" height="226" rx="15" fill="none" stroke="#2c2e34"/>
+<text x="48" y="38" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="500" text-anchor="start" letter-spacing="0.4">another-bbzj  /  README.md</text>
+<text x="1232" y="38" fill="#6e6a63" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="11" font-weight="500" text-anchor="end" letter-spacing="1.2">NORTHEASTERN UNIVERSITY AT QINHUANGDAO</text>
+<path d="M48 54 H1232" stroke="#2c2e34"/>
+<text x="48" y="122" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="64" font-weight="600" text-anchor="start">邹俊</text>
+<text x="48" y="156" fill="#e0b15a" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="16" font-weight="500" text-anchor="start">@another-bbzj</text>
+<text x="48" y="196" fill="#9a958c" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="15" font-weight="400" text-anchor="start">东北大学秦皇岛分校</text>
+<path d="M612 78 V168" stroke="#2c2e34"/>
+<text x="648" y="112" fill="#f3f0e8" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="32" font-weight="560" text-anchor="start">嵌入式 × AI Agent</text>
+<rect class="cur" x="1040" y="86" width="3" height="28" rx="1" fill="#e0b15a"/>
+<text x="648" y="146" fill="#9a958c" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'WenQuanYi Micro Hei', 'Droid Sans Fallback', Helvetica, Arial, sans-serif" font-size="15" font-weight="400" text-anchor="start">STM32 firmware, and agent teams you can watch.</text>
+<circle cx="648" cy="191" r="3.5" fill="#e0b15a"/>
+<text x="660" y="196" fill="#e0b15a" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="600" text-anchor="start" letter-spacing="0.8">01</text>
+<text x="684" y="196" fill="#f3f0e8" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="500" text-anchor="start">claude-agent-team</text>
+<circle cx="888" cy="191" r="3.5" fill="#5dbeba"/>
+<text x="900" y="196" fill="#5dbeba" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="600" text-anchor="start" letter-spacing="0.8">02</text>
+<text x="924" y="196" fill="#f3f0e8" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="500" text-anchor="start">dsh-agent-team</text>
+<circle cx="1088" cy="191" r="3.5" fill="#e07a4a"/>
+<text x="1100" y="196" fill="#e07a4a" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="12" font-weight="600" text-anchor="start" letter-spacing="0.8">03</text>
+<text x="1124" y="196" fill="#f3f0e8" font-family="ui-monospace, 'SFMono-Regular', 'SF Mono', 'Cascadia Code', Menlo, Consolas, 'Liberation Mono', 'WenQuanYi Micro Hei Mono', monospace" font-size="13" font-weight="500" text-anchor="start">dart</text>
+</svg>
