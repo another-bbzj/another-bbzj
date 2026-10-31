@@ -8,6 +8,8 @@
 
 <a href="https://github.com/another-bbzj/claude-agent-team"><img src="assets/card-cat.webp" width="830" alt="claude-agent-team：让 Claude Code 像一家小公司一样干活，而且你能看见它在干活。Python 3.8+ · Zero deps · v1.4.2 · MIT"></a>
 
+<p><a href="https://hub.xerj.org/contributors/another-bbzj"><img src="https://img.shields.io/badge/XERJ_Corpus_Hub-Contributor-d9774b?style=for-the-badge&amp;labelColor=1a1816" alt="XERJ Corpus Hub Contributor · 查看贡献者页面"></a></p>
+
 <picture><source media="(prefers-color-scheme: light)" srcset="assets/div-row-light.svg"><img src="assets/div-row.svg" width="830" alt=""></picture>
 
 <a href="https://github.com/another-bbzj/dsh-agent-team"><img src="assets/card-dsh.webp" width="830" alt="dsh-agent-team：DeepSeek Harness 插件 · 可视化指挥室。Node ≥ 20 · 纯 ESM"></a>
